@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on("notification", (data) => {
+            alert(`Notification: ${data.message}`);
+        });
+
+        document.querySelector("button#notify").addEventListener("click", () => {
+            socket.emit("notify", { message: "Test notification" });
+        });
+    </script>
+</head>
+<body>
+    <h2>Dashboard</h2>
+    <button id="notify">Send Notification</button>
+</body>
+</html>
